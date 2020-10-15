@@ -15,4 +15,6 @@ $(() => {
   $('#sign-out-form').on('submit', events.onSignOut)
   $('#change-password-form').hide()
   $('#sign-out-form').hide()
+  // Create game part
+  $('#create-game').on('submit', events.onCreateGame)
 })

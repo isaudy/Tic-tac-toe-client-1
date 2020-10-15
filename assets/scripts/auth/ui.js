@@ -42,6 +42,16 @@ const onSignOutFailure = function () {
   $('#message').text('Failed to sign out')
 }
 
+// Create part
+
+const onCreateSuccess = function (response) {
+  $('#message').text('Game created successfully')
+}
+
+const onCreateFail = function () {
+  $('#message').text('Failed to create game')
+}
+
 module.exports = {
   onSignUpSuccess,
   onSignUpFailure,
@@ -50,5 +60,7 @@ module.exports = {
   onChangePassSuccess,
   onChangePassFail,
   onSignOutSuccess,
-  onSignOutFailure
+  onSignOutFailure,
+  onCreateSuccess,
+  onCreateFail
 }
