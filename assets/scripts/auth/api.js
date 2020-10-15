@@ -52,10 +52,21 @@ const createGame = function (data) {
   })
 }
 
+const getGames = function () {
+  return $.ajax({
+    url: config.apiUrl + '/games',
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    method: 'GET'
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   changePass,
   signOut,
-  createGame
+  createGame,
+  getGames
 }

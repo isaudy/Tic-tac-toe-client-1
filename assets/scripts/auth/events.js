@@ -56,10 +56,20 @@ const onCreateGame = function (event) {
     .catch(ui.onCreateFail)
 }
 
+const onGetGames = function (event) {
+  event.preventDefault()
+
+  api.getGames()
+    .then(ui.onGetGamesSuccess)
+    // .catch(ui.onGetGamesFail)
+    // Cannot reject
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
   onChangePass,
   onSignOut,
-  onCreateGame
+  onCreateGame,
+  onGetGames
 }
