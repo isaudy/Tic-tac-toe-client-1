@@ -15,6 +15,8 @@ const onSignInSuccess = function (response) {
   $('#sign-out-form').show()
   $('#sign-up-form').hide()
   $('#sign-in-form').hide()
+  $('#create-game').show()
+  $('#get-all-games').show()
 }
 
 const onSignInFailure = function () {
@@ -36,6 +38,9 @@ const onSignOutSuccess = function () {
   $('#sign-out-form').hide()
   $('#sign-up-form').show()
   $('#sign-in-form').show()
+  $('#games-display').html('')
+  $('#create-game').hide()
+  $('#get-all-games').hide()
 }
 
 const onSignOutFailure = function () {

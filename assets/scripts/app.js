@@ -18,4 +18,7 @@ $(() => {
   // Create game part
   $('#create-game').on('submit', events.onCreateGame)
   $('#get-all-games').on('submit', events.onGetGames)
+  // Hide create game and get all games
+  $('#create-game').hide()
+  $('#get-all-games').hide()
 })
