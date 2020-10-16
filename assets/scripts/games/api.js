@@ -25,7 +25,27 @@ const getGames = function () {
   })
 }
 
+const updateGame = function (cell, player, over) {
+  return $.ajax({
+    url: config.apiUrl + '/games/:id' + store.game,
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    method: 'PATCH',
+    data: {
+      game: {
+        cell: {
+          index: cell,
+          value: player
+        },
+        over: over
+      }
+    }
+  })
+}
+
 module.exports = {
   createGame,
-  getGames
+  getGames,
+  updateGame
 }

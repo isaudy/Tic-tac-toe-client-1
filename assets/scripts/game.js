@@ -2,6 +2,7 @@ const store = require('./store')
 const ui = require('./games/ui')
 
 const arr = ['', '', '', '', '', '', '', '', '']
+// let numberOfPlays = 0
 
 const gameBoard = function (index) {
   console.log(index.id)
@@ -49,6 +50,12 @@ const validPos = (playIndex) => {
   }
   return valid
 }
+
+// const gameStatus = () => {
+//   if (count === 5) {
+//
+//   }
+// }
 
 module.exports = {
   gameBoard
