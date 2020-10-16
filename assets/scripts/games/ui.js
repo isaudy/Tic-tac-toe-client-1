@@ -25,8 +25,8 @@ const onGetGamesFail = function () {
 }
 
 // Track board in JS
-const onBoxClickSuccess = function () {
-  $('#box0').text('X')
+const onBoxClickSuccess = function (playIndex, val) {
+  $('#box' + playIndex).text(val)
 }
 
 module.exports = {
