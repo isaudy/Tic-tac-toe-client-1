@@ -1,8 +1,10 @@
-// const store = require('./../store')
+const store = require('./../store')
 // Create part
 
 const onCreateSuccess = function (response) {
   $('#message').text('Game created successfully')
+  console.log(response)
+  // store.game = response.game
 }
 
 const onCreateFail = function () {
@@ -27,6 +29,11 @@ const onGetGamesFail = function () {
 // Track board in JS
 const onBoxClickSuccess = function (playIndex, val) {
   $('#box' + playIndex).text(val)
+  $('#notification').text('')
+}
+
+const onBoxClickFail = function (playIndex, val) {
+  $('#notification').text('This position is invalid')
 }
 
 module.exports = {
@@ -34,5 +41,6 @@ module.exports = {
   onCreateFail,
   onGetGamesSuccess,
   onGetGamesFail,
-  onBoxClickSuccess
+  onBoxClickSuccess,
+  onBoxClickFail
 }
