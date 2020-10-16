@@ -46,30 +46,35 @@ const onSignOut = function (event) {
     .catch(ui.onSignOutFailure)
 }
 
-// Create part
-
-const onCreateGame = function (event) {
-  event.preventDefault()
-
-  api.createGame()
-    .then(ui.onCreateSuccess)
-    .catch(ui.onCreateFail)
-}
-
-const onGetGames = function (event) {
-  event.preventDefault()
-
-  api.getGames()
-    .then(ui.onGetGamesSuccess)
-    // .catch(ui.onGetGamesFail)
-    // Cannot reject
-}
+// // Create part
+//
+// const onCreateGame = function (event) {
+//   event.preventDefault()
+//
+//   api.createGame()
+//     .then(ui.onCreateSuccess)
+//     .catch(ui.onCreateFail)
+// }
+//
+// const onGetGames = function (event) {
+//   event.preventDefault()
+//
+//   api.getGames()
+//     .then(ui.onGetGamesSuccess)
+//     // .catch(ui.onGetGamesFail)
+//     // Cannot reject
+// }
+//
+// const onBoxClick = function (event) {
+//   event.preventDefault()
+//
+//   const box = event.target
+//   game.gameBoard(box)
+// }
 
 module.exports = {
   onSignUp,
   onSignIn,
   onChangePass,
-  onSignOut,
-  onCreateGame,
-  onGetGames
+  onSignOut
 }

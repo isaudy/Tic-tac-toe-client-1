@@ -49,28 +49,33 @@ const onSignOutFailure = function () {
 
 // Create part
 
-const onCreateSuccess = function (response) {
-  $('#message').text('Game created successfully')
-}
-
-const onCreateFail = function () {
-  $('#message').text('Failed to create game')
-}
-
-const onGetGamesSuccess = function (response) {
-  console.log(response)
-  const displayGames = function (element) {
-    $('#games-display').append(`
-    <h4>Game id: ${element._id} </h4>
-    <p> Over: ${element.over} </p>
-    `)
-  }
-  response.games.forEach(element => displayGames(element))
-}
-
-const onGetGamesFail = function () {
-  $('#message').text('Failed to get games')
-}
+// const onCreateSuccess = function (response) {
+//   $('#message').text('Game created successfully')
+// }
+//
+// const onCreateFail = function () {
+//   $('#message').text('Failed to create game')
+// }
+//
+// const onGetGamesSuccess = function (response) {
+//   console.log(response)
+//   const displayGames = function (element) {
+//     $('#games-display').append(`
+//     <h4>Game id: ${element._id} </h4>
+//     <p> Over: ${element.over} </p>
+//     `)
+//   }
+//   response.games.forEach(element => displayGames(element))
+// }
+//
+// const onGetGamesFail = function () {
+//   $('#message').text('Failed to get games')
+// }
+//
+// // Track board in JS
+// const onBoxClickSuccess = function () {
+//   $('#box0').text('X')
+// }
 
 module.exports = {
   onSignUpSuccess,
@@ -80,9 +85,5 @@ module.exports = {
   onChangePassSuccess,
   onChangePassFail,
   onSignOutSuccess,
-  onSignOutFailure,
-  onCreateSuccess,
-  onCreateFail,
-  onGetGamesSuccess,
-  onGetGamesFail
+  onSignOutFailure
 }

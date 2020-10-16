@@ -1,1 +1,17 @@
 @import '~bootstrap/scss/bootstrap';
+
+$box-color: $cyan;
+
+.box {
+  align-items: center;
+  background-color: $box-color;
+  border-bottom: 1px solid $white;
+  border-right: 1px solid $white;
+  display: flex;
+  height: 80px;
+  justify-content: center;
+}
+
+.row {
+  width: 50%;
+}
