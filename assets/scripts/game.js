@@ -5,18 +5,24 @@ const arr = ['', '', '', '', '', '', '', '', '']
 // let numberOfPlays = 0
 
 const gameBoard = function (index) {
-  console.log(index.id)
-  console.log('The game board')
+  // console.log(index.id)
+  // console.log('The game board')
   const playIndex = $('#' + index.id).data('cellIndex')
-  const valid = validPos(playIndex)
-  if (valid === true) {
-    arr[playIndex] = getValue()
-    ui.onBoxClickSuccess(playIndex, arr[playIndex])
-  } else {
-    console.log('This position is invalid')
-    ui.onBoxClickFail(playIndex, arr[playIndex])
+  // const valid = validPos(playIndex)
+  // if (valid === true) {
+  //   arr[playIndex] = getValue()
+  //   ui.onBoxClickSuccess(playIndex, arr[playIndex])
+  // } else {
+  //   console.log('This position is invalid')
+  //   ui.onBoxClickFail(playIndex, arr[playIndex])
+  // }
+  // console.log(arr)
+  const playObj = {
+    index: playIndex,
+    player: 'X',
+    over: false
   }
-  console.log(arr)
+  return playObj
 }
 
 const getValue = () => {

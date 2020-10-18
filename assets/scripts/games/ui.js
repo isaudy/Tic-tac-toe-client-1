@@ -4,7 +4,8 @@ const store = require('./../store')
 const onCreateSuccess = function (response) {
   $('#message').text('Game created successfully')
   console.log(response)
-  // store.game = response.game
+  store.game = response.game
+  console.log(response.game)
 }
 
 const onCreateFail = function () {
@@ -17,6 +18,7 @@ const onGetGamesSuccess = function (response) {
     $('#games-display').append(`
     <h4>Game id: ${element._id} </h4>
     <p> Over: ${element.over} </p>
+    <p> Cells: ${element.cells} </p>
     `)
   }
   response.games.forEach(element => displayGames(element))
@@ -36,11 +38,22 @@ const onBoxClickFail = function (playIndex, val) {
   $('#notification').text('This position is invalid')
 }
 
+const onUpdateSuccess = function (response) {
+  store.game = response.game
+  console.log('updated game is:' + store.game)
+}
+
+const onUpdateFail = function () {
+  $('#notification').text('Failed to update game')
+}
+
 module.exports = {
   onCreateSuccess,
   onCreateFail,
   onGetGamesSuccess,
   onGetGamesFail,
   onBoxClickSuccess,
-  onBoxClickFail
+  onBoxClickFail,
+  onUpdateSuccess,
+  onUpdateFail
 }
