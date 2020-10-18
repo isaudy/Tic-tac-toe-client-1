@@ -47,6 +47,10 @@ const onUpdateFail = function () {
   $('#notification').text('Failed to update game')
 }
 
+const playerTurn = function (player) {
+  $('#current_player').text('The player is: ' + player)
+}
+
 module.exports = {
   onCreateSuccess,
   onCreateFail,
@@ -55,5 +59,6 @@ module.exports = {
   onBoxClickSuccess,
   onBoxClickFail,
   onUpdateSuccess,
-  onUpdateFail
+  onUpdateFail,
+  playerTurn
 }

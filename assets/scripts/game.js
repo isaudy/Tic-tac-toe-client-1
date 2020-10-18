@@ -8,27 +8,29 @@ const gameBoard = function (index) {
   // console.log(index.id)
   // console.log('The game board')
   const playIndex = $('#' + index.id).data('cellIndex')
-  // const valid = validPos(playIndex)
-  // if (valid === true) {
-  //   arr[playIndex] = getValue()
-  //   ui.onBoxClickSuccess(playIndex, arr[playIndex])
-  // } else {
-  //   console.log('This position is invalid')
-  //   ui.onBoxClickFail(playIndex, arr[playIndex])
-  // }
-  // console.log(arr)
-  const playObj = {
-    index: playIndex,
-    player: 'X',
-    over: false
+  const valid = validPos(playIndex)
+  if (valid === true) {
+    arr[playIndex] = getValue()
+    nextPlayer(arr[playIndex])
+    ui.onBoxClickSuccess(playIndex, arr[playIndex])
+  } else {
+    console.log('This position is invalid')
+    ui.onBoxClickFail(playIndex, arr[playIndex])
   }
-  return playObj
+  console.log(arr)
+  // const playObj = {
+  //   index: playIndex,
+  //   player: 'X',
+  //   over: false
+  // }
+  // return playObj
 }
 
 const getValue = () => {
   let countX = 0
   let countO = 0
   let turnValue = ''
+  let nextPlayer = ''
   for (let i = 0; i < 9; i++) {
     if (arr[i] === 'X') {
       countX++
@@ -55,6 +57,16 @@ const validPos = (playIndex) => {
     valid = true
   }
   return valid
+}
+
+const nextPlayer = function (player) {
+  let nextPlayer
+  if (player === 'X') {
+    nextPlayer = 'O'
+  } else if (player === 'O') {
+    nextPlayer = 'X'
+  }
+  ui.playerTurn(nextPlayer)
 }
 
 // const gameStatus = () => {
