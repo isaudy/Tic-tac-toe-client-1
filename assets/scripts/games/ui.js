@@ -22,14 +22,30 @@ const onCreateFail = function () {
 
 const onGetGamesSuccess = function (response) {
   console.log(response)
-  const displayGames = function (element) {
-    $('#games-display').append(`
-    <h4>Game id: ${element._id} </h4>
-    <p> Over: ${element.over} </p>
-    <p> Cells: ${element.cells} </p>
-    `)
+  const gamesFin = function () {
+    let count = 0
+    for (let i = 0; i < response.games.length; i++) {
+      if (response.games[i].over === true) {
+        count++
+      }
+    }
+    return count
   }
-  response.games.forEach(element => displayGames(element))
+  const displayGames = function () {
+    // $('#games-display').append(`
+    // <h4>Game id: ${element._id} </h4>
+    // <p> Over: ${element.over} </p>
+    // <p> Cells: ${element.cells} </p>
+    // `)
+    $('#games-display').append(`
+      <h5> Stats </h5>
+      <p> Games played: ${response.games.length} </p>
+      <p> Games finished: ${gamesFin()} </p>
+      `)
+  }
+  console.log(response.games.length)
+  displayGames()
+  // response.games.forEach(element => displayGames(element))
 }
 
 const onGetGamesFail = function () {
