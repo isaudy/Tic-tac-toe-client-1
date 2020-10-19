@@ -51,6 +51,7 @@ const playerTurn = function (player) {
   $('#current_player').text('The player is: ' + player)
 }
 
+
 module.exports = {
   onCreateSuccess,
   onCreateFail,
