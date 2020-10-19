@@ -22,6 +22,6 @@ $(() => {
   // Hide create game and get all games
   $('#create-game').hide()
   $('#get-all-games').hide()
-  // Dummy board click handlers
+  // board click handlers
   $('.box').on('click', gameEvents.onBoxClick)
 })

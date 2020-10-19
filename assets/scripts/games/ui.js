@@ -59,6 +59,14 @@ const onGameTie = function () {
   $('#result').text('It\'s a tie!')
 }
 
+const gameResult = function (player) {
+  if (player === 'X') {
+    $('#result').text('You win!')
+  } else {
+    $('#result').text('You lose')
+  }
+}
+
 module.exports = {
   onCreateSuccess,
   onCreateFail,
@@ -70,5 +78,6 @@ module.exports = {
   onUpdateFail,
   playerTurn,
   onGameEnd,
-  onGameTie
+  onGameTie,
+  gameResult
 }
