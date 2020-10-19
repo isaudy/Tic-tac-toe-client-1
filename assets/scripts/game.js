@@ -2,7 +2,7 @@ const store = require('./store')
 const ui = require('./games/ui')
 
 const arr = ['', '', '', '', '', '', '', '', '']
-// let numberOfPlays = 0
+let numberOfPlays = 0
 
 const gameBoard = function (index) {
   // console.log(index.id)
@@ -10,12 +10,15 @@ const gameBoard = function (index) {
   const playIndex = $('#' + index.id).data('cellIndex')
   const valid = validPos(playIndex)
   if (valid === true) {
+    numberOfPlays++
+    const status = gameStatus()
+    console.log('Status is: ' + status)
     arr[playIndex] = getValue()
     nextPlayer(arr[playIndex])
     ui.onBoxClickSuccess(playIndex, arr[playIndex])
   } else {
     console.log('This position is invalid')
-    ui.onBoxClickFail(playIndex, arr[playIndex])
+    ui.onBoxClickFail()
   }
   console.log(arr)
   // const playObj = {
@@ -26,6 +29,7 @@ const gameBoard = function (index) {
   // return playObj
 }
 
+// Get player symbol
 const getValue = () => {
   let countX = 0
   let countO = 0
@@ -59,6 +63,7 @@ const validPos = (playIndex) => {
   return valid
 }
 
+// Determine player message
 const nextPlayer = function (player) {
   let nextPlayer
   if (player === 'X') {
@@ -69,11 +74,25 @@ const nextPlayer = function (player) {
   ui.playerTurn(nextPlayer)
 }
 
-// const gameStatus = () => {
-//   if (count === 5) {
-//
-//   }
-// }
+const gameStatus = () => {
+  let gameOver = false
+  // Determine row wins
+  if (numberOfPlays >= 4) {
+    if ((arr[0] === arr[1] && arr[0] === arr[2]) ||
+  (arr[3] === arr[4] && arr[3] === arr[5]) || (arr[6] === arr[7] && arr[6] === arr[8])) {
+      gameOver = true
+      // Determine column wins
+    } else if ((arr[0] === arr[3] && arr[0] === [6]) || (arr[1] === arr[4] && arr[1] === arr[7]) || (arr[2] === arr[5] && arr[2] === arr[8])) {
+      gameOver = true
+      // Determine diagonal w
+    } else if ((arr[0] === arr[4] && arr[0] === arr[8]) || (arr[2] === arr[4] && arr[2] === arr[6])) {
+      gameOver = true
+    }
+  } else {
+    gameOver = false
+  }
+  return gameOver
+}
 
 module.exports = {
   gameBoard

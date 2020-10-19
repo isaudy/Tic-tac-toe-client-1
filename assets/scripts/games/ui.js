@@ -34,7 +34,7 @@ const onBoxClickSuccess = function (playIndex, val) {
   $('#notification').text('')
 }
 
-const onBoxClickFail = function (playIndex, val) {
+const onBoxClickFail = function () {
   $('#notification').text('This position is invalid')
 }
 
