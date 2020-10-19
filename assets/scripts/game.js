@@ -2,8 +2,7 @@ const store = require('./store')
 const ui = require('./games/ui')
 
 let arr = []
-let numberOfPlays = 0
-let status = false
+// let status = false
 let winner
 
 const gameBoard = function (index) {
@@ -13,24 +12,25 @@ const gameBoard = function (index) {
   const playIndex = $('#' + index.id).data('cellIndex')
   const valid = validPos(playIndex)
   // If the position is valid and the game is not over
-  if (valid === true && status === false) {
-    numberOfPlays++
-    arr[playIndex] = getValue()
-    player = arr[playIndex]
+  if (valid === true && store.game.over === false) {
+    store.count++
+    console.log(store.count)
+    player = getValue()
+    arr[playIndex] = player
     nextPlayer(arr[playIndex])
     ui.onBoxClickSuccess(playIndex, arr[playIndex])
     // If the position is invalid and the game is not over
-  } else if (valid === false && status === false) {
+  } else if (valid === false && store.game.over === false) {
     console.log('This position is invalid')
     return false
   }
-  status = gameStatus()
+  store.game.over = gameStatus()
   const playObj = {
     index: playIndex,
     player: player,
-    over: status
+    over: store.game.over
   }
-  console.log('Status is: ' + status)
+  console.log('Status is: ' + store.game.over)
   return playObj
 }
 
@@ -81,7 +81,7 @@ const nextPlayer = function (player) {
 const gameStatus = () => {
   // let gameOver = false
   // Determine row wins
-  if (numberOfPlays >= 4 && numberOfPlays < 9) {
+  if (store.count >= 4 && store.count < 9) {
     if (gameIndices(0, 1, 2) || gameIndices(3, 4, 5) || gameIndices(6, 7, 8)) {
       return true
     } else if (gameIndices(0, 3, 6) || gameIndices(1, 4, 7) || gameIndices(2, 5, 8)) {
@@ -91,7 +91,7 @@ const gameStatus = () => {
     } else {
       return false
     }
-  } else if (numberOfPlays === 9) {
+  } else if (store.count === 9) {
     ui.onGameTie()
     return true
   } else {
@@ -109,10 +109,6 @@ const gameIndices = (index1, index2, index3) => {
     return false
   }
 }
-
-// const gameResult = () => {
-//
-// }
 
 module.exports = {
   gameBoard

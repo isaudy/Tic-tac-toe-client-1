@@ -2,10 +2,18 @@ const store = require('./../store')
 // Create part
 
 const onCreateSuccess = function (response) {
+  store.game = null
+  store.count = 0
+  console.log('store.game after null: ' + store.game)
   $('#message').text('Game created successfully')
-  console.log(response)
+  // console.log(response)
+  $('#board').show()
+  $('#game_notifications').show()
+  $('#board-rows').children().text('')
+  $('#game_not_messages').children().text('')
+  $('#current_player').text('Current player: X')
   store.game = response.game
-  console.log(response.game)
+  console.log(store.game)
 }
 
 const onCreateFail = function () {
@@ -41,6 +49,7 @@ const onBoxClickFail = function () {
 const onUpdateSuccess = function (response) {
   // store.game = response.game
   console.log('updated game is:' + store.game.cells)
+  console.log('store.game is: ' + store.game)
 }
 
 const onUpdateFail = function () {

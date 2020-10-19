@@ -34,12 +34,15 @@ const onBoxClick = function (event) {
     if (test.over === true) {
       ui.onGameEnd()
     }
-    api.updateGame(test)
-      .then(ui.onUpdateSuccess)
-      .catch(ui.onUpdateFail)
+    onUpdateGame(test)
   }
 }
 
+const onUpdateGame = function (test) {
+  api.updateGame(test)
+    .then(ui.onUpdateSuccess)
+    .catch(ui.onUpdateFail)
+}
 module.exports = {
   onCreateGame,
   onGetGames,

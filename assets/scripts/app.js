@@ -24,4 +24,7 @@ $(() => {
   $('#get-all-games').hide()
   // board click handlers
   $('.box').on('click', gameEvents.onBoxClick)
+  // Hide game board
+  $('#board').hide()
+  $('#game_notifications').hide()
 })

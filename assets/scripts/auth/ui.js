@@ -41,6 +41,8 @@ const onSignOutSuccess = function () {
   $('#games-display').html('')
   $('#create-game').hide()
   $('#get-all-games').hide()
+  $('#board').hide()
+  $('#game_notifications').hide()
 }
 
 const onSignOutFailure = function () {
