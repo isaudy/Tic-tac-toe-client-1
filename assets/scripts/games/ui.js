@@ -48,11 +48,15 @@ const onUpdateFail = function () {
 }
 
 const playerTurn = function (player) {
-  $('#current_player').text('The player is: ' + player)
+  $('#current_player').text('Current player: ' + player)
 }
 
 const onGameEnd = function () {
   $('#notification').text('The game is over')
+}
+
+const onGameTie = function () {
+  $('#result').text('It\'s a tie!')
 }
 
 module.exports = {
@@ -65,5 +69,6 @@ module.exports = {
   onUpdateSuccess,
   onUpdateFail,
   playerTurn,
-  onGameEnd
+  onGameEnd,
+  onGameTie
 }

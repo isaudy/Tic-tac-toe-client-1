@@ -13,12 +13,14 @@ const gameBoard = function (index) {
   status = gameStatus()
   const playIndex = $('#' + index.id).data('cellIndex')
   const valid = validPos(playIndex)
+  // If the position is valid and the game is not over
   if (valid === true && status === false) {
     numberOfPlays++
     arr[playIndex] = getValue()
     player = arr[playIndex]
     nextPlayer(arr[playIndex])
     ui.onBoxClickSuccess(playIndex, arr[playIndex])
+    // If the position is invalid and the game is not over
   } else if (valid === false && status === false) {
     console.log('This position is invalid')
     return false
@@ -29,11 +31,8 @@ const gameBoard = function (index) {
     player: player,
     over: status
   }
-  if (status === true) {
-    return true
-  } else {
-    return playObj
-  }
+  console.log('Status is: ' + status)
+  return playObj
 }
 
 // Get player symbol
@@ -83,7 +82,7 @@ const nextPlayer = function (player) {
 const gameStatus = () => {
   let gameOver = false
   // Determine row wins
-  if (numberOfPlays >= 4) {
+  if (numberOfPlays >= 4 && numberOfPlays < 9) {
     if ((arr[0] === arr[1] && arr[0] === arr[2] && arr[0] !== '') ||
   (arr[3] === arr[4] && arr[3] === arr[5] && arr[3] !== '') || (arr[6] === arr[7] && arr[6] === arr[8] && arr[6] !== '')) {
       gameOver = true
@@ -94,11 +93,18 @@ const gameStatus = () => {
     } else if ((arr[0] === arr[4] && arr[0] === arr[8] && arr[0] !== '') || (arr[2] === arr[4] && arr[2] === arr[6] && arr[2] !== '')) {
       gameOver = true
     }
+  } else if (numberOfPlays === 9) {
+    ui.onGameTie()
+    gameOver = true
   } else {
     gameOver = false
   }
   return gameOver
 }
+
+// const gameResult = () => {
+//
+// }
 
 module.exports = {
   gameBoard

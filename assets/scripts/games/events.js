@@ -26,11 +26,14 @@ const onBoxClick = function (event) {
 
   const box = event.target
   const test = game.gameBoard(box)
-  if (test === true) {
-    ui.onGameEnd()
-  } else if (test === false) {
+  // If the game is over
+  if (test === false) {
     ui.onBoxClickFail()
+  // If the move was valid
   } else {
+    if (test.over === true) {
+      ui.onGameEnd()
+    }
     api.updateGame(test)
       .then(ui.onUpdateSuccess)
       .catch(ui.onUpdateFail)
