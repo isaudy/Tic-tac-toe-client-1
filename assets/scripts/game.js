@@ -4,13 +4,15 @@ const ui = require('./games/ui')
 let arr = []
 let numberOfPlays = 0
 let status = false
+// let winner
 
 const gameBoard = function (index) {
   // console.log(index.id)
   // console.log('The game board')
+  console.log('arr in storage is: ' + store.game.cells)
   arr = store.game.cells
+  // console.log('arr is:' + arr)
   let player
-  status = gameStatus()
   const playIndex = $('#' + index.id).data('cellIndex')
   const valid = validPos(playIndex)
   // If the position is valid and the game is not over
@@ -80,26 +82,54 @@ const nextPlayer = function (player) {
 }
 
 const gameStatus = () => {
-  let gameOver = false
+  // let gameOver = false
   // Determine row wins
   if (numberOfPlays >= 4 && numberOfPlays < 9) {
-    if ((arr[0] === arr[1] && arr[0] === arr[2] && arr[0] !== '') ||
-  (arr[3] === arr[4] && arr[3] === arr[5] && arr[3] !== '') || (arr[6] === arr[7] && arr[6] === arr[8] && arr[6] !== '')) {
-      gameOver = true
-      // Determine column wins
-    } else if ((arr[0] === arr[3] && arr[0] === arr[6] && arr[0] !== '') || (arr[1] === arr[4] && arr[1] === arr[7] && arr[1] !== '') || (arr[2] === arr[5] && arr[2] === arr[8] && arr[2] !== '')) {
-      gameOver = true
-      // Determine diagonal wins
-    } else if ((arr[0] === arr[4] && arr[0] === arr[8] && arr[0] !== '') || (arr[2] === arr[4] && arr[2] === arr[6] && arr[2] !== '')) {
-      gameOver = true
+    if (gameIndices(0, 1, 2) || gameIndices(3, 4, 5) || gameIndices(6, 7, 8)) {
+      return true
+    } else if (gameIndices(0, 3, 6) || gameIndices(1, 4, 7) || gameIndices(2, 5, 8)) {
+      return true
+    } else if (gameIndices(0, 4, 8) || gameIndices(2, 4, 6)) {
+      return true
+    } else {
+      return false
     }
   } else if (numberOfPlays === 9) {
     ui.onGameTie()
-    gameOver = true
+    return true
   } else {
-    gameOver = false
+    return false
   }
-  return gameOver
+
+  // if (numberOfPlays >= 4 && numberOfPlays < 9) {
+  //   if ((arr[0] === arr[1] && arr[0] === arr[2] && arr[0] !== '') ||
+  // (arr[3] === arr[4] && arr[3] === arr[5] && arr[3] !== '') || (arr[6] === arr[7] && arr[6] === arr[8] && arr[6] !== '')) {
+  //     gameOver = true
+  //     // Determine column winner
+  //     // Determine column wins
+  //   } else if ((arr[0] === arr[3] && arr[0] === arr[6] && arr[0] !== '') || (arr[1] === arr[4] && arr[1] === arr[7] && arr[1] !== '') || (arr[2] === arr[5] && arr[2] === arr[8] && arr[2] !== '')) {
+  //     gameOver = true
+  //     // Determine diagonal wins
+  //   } else if ((arr[0] === arr[4] && arr[0] === arr[8] && arr[0] !== '') || (arr[2] === arr[4] && arr[2] === arr[6] && arr[2] !== '')) {
+  //     gameOver = true
+  //   }
+  // } else if (numberOfPlays === 9) {
+  //   ui.onGameTie()
+  //   gameOver = true
+  // } else {
+  //   gameOver = false
+  // }
+  // return gameOver
+}
+
+const gameIndices = (index1, index2, index3) => {
+  if (arr[index1] === arr[index2] && arr[index1] === arr[index3] && arr[index1] !== '') {
+    const winner = arr[index1]
+    console.log('The winner is:' + winner)
+    return true
+  } else {
+    return false
+  }
 }
 
 // const gameResult = () => {
