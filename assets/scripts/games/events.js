@@ -1,7 +1,6 @@
 const api = require('./api')
 const ui = require('./ui')
 const game = require('./../game')
-const store = require('./../store')
 
 // Create part
 
@@ -27,10 +26,9 @@ const onBoxClick = function (event) {
 
   const box = event.target
   const test = game.gameBoard(box)
-  // console.log(test)
-  // api.updateGame(test)
-  //   .then(ui.onUpdateSuccess)
-  //   .catch(ui.onUpdateFail)
+  api.updateGame(test)
+    .then(ui.onUpdateSuccess)
+    .catch(ui.onUpdateFail)
 }
 
 module.exports = {

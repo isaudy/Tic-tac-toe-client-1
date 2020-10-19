@@ -39,8 +39,8 @@ const onBoxClickFail = function () {
 }
 
 const onUpdateSuccess = function (response) {
-  store.game = response.game
-  console.log('updated game is:' + store.game)
+  // store.game = response.game
+  console.log('updated game is:' + store.game.cells)
 }
 
 const onUpdateFail = function () {
@@ -51,6 +51,9 @@ const playerTurn = function (player) {
   $('#current_player').text('The player is: ' + player)
 }
 
+const onGameEnd = function () {
+  $('#notification').text('The game is over')
+}
 
 module.exports = {
   onCreateSuccess,
@@ -61,5 +64,6 @@ module.exports = {
   onBoxClickFail,
   onUpdateSuccess,
   onUpdateFail,
-  playerTurn
+  playerTurn,
+  onGameEnd
 }
