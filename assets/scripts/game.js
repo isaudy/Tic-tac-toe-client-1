@@ -13,15 +13,15 @@ const gameBoard = function (index) {
   status = gameStatus()
   const playIndex = $('#' + index.id).data('cellIndex')
   const valid = validPos(playIndex)
-  if (valid === true) {
+  if (valid === true && status === false) {
     numberOfPlays++
     arr[playIndex] = getValue()
     player = arr[playIndex]
     nextPlayer(arr[playIndex])
     ui.onBoxClickSuccess(playIndex, arr[playIndex])
-  } else {
+  } else if (valid === false && status === false) {
     console.log('This position is invalid')
-    // ui.onBoxClickFail()
+    return false
   }
   status = gameStatus()
   const playObj = {
@@ -29,9 +29,11 @@ const gameBoard = function (index) {
     player: player,
     over: status
   }
-  console.log('Status is: ' + status)
-  console.log(arr)
-  return playObj
+  if (status === true) {
+    return true
+  } else {
+    return playObj
+  }
 }
 
 // Get player symbol
@@ -88,7 +90,7 @@ const gameStatus = () => {
       // Determine column wins
     } else if ((arr[0] === arr[3] && arr[0] === arr[6] && arr[0] !== '') || (arr[1] === arr[4] && arr[1] === arr[7] && arr[1] !== '') || (arr[2] === arr[5] && arr[2] === arr[8] && arr[2] !== '')) {
       gameOver = true
-      // Determine diagonal w
+      // Determine diagonal wins
     } else if ((arr[0] === arr[4] && arr[0] === arr[8] && arr[0] !== '') || (arr[2] === arr[4] && arr[2] === arr[6] && arr[2] !== '')) {
       gameOver = true
     }

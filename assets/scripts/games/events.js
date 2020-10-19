@@ -26,9 +26,15 @@ const onBoxClick = function (event) {
 
   const box = event.target
   const test = game.gameBoard(box)
-  api.updateGame(test)
-    .then(ui.onUpdateSuccess)
-    .catch(ui.onUpdateFail)
+  if (test === true) {
+    ui.onGameEnd()
+  } else if (test === false) {
+    ui.onBoxClickFail()
+  } else {
+    api.updateGame(test)
+      .then(ui.onUpdateSuccess)
+      .catch(ui.onUpdateFail)
+  }
 }
 
 module.exports = {

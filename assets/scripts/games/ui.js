@@ -44,7 +44,7 @@ const onUpdateSuccess = function (response) {
 }
 
 const onUpdateFail = function () {
-  $('#notification').text('Failed to update game')
+  $('#update').text('Failed to update game')
 }
 
 const playerTurn = function (player) {
