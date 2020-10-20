@@ -32,11 +32,6 @@ const onGetGamesSuccess = function (response) {
     return count
   }
   const displayGames = function () {
-    // $('#games-display').append(`
-    // <h4>Game id: ${element._id} </h4>
-    // <p> Over: ${element.over} </p>
-    // <p> Cells: ${element.cells} </p>
-    // `)
     $('#games-display').html('')
     $('#games-display').append(`
       <h5> Stats </h5>
@@ -94,7 +89,6 @@ const gameResult = function (player) {
 }
 
 const onGetPrevSuccess = function (response) {
-  console.log(response)
   $('#board').show()
   $('#board-rows').children().text('')
   let arr
