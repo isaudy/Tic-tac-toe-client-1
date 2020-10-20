@@ -12,10 +12,9 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-    <div class="container">
-    <div class="col-12"><h1>Tic-Tac-Toe</h1></div>
-    <div class="col-12"><p id="message"></p></div>
-    </div>
+    <h1>Tic-Tac-Toe</h1>
+    <p id="message"></p>
+
       <!-- Sign in section -->
     <div class="container">
       <!-- <section class="row"> -->
@@ -104,6 +103,7 @@
       <!-- Table section -->
   <div class="container game" id="board">
     <h2>Tic-tac-toe board</h2>
+      <div id="current_player" class="col-12 player"></div>
       <section class="row board h-100" id="board-rows">
       <div id="box0" class="col-4 box" data-cell-index='0'></div>
       <div id="box1" class="col-4 box" data-cell-index='1'></div>
@@ -117,13 +117,19 @@
     </section>
   </div>
   <div class="container" id="game_notifications">
-    <section class="row" id="game_not_messages">
+    <div class="updates">
       <div id="notification" class="col-12"></div>
-      <div id="current_player" class="col-12"></div>
+      <!-- <div id="current_player" class="col-12"></div> -->
       <div id="update" class="col-12"></div>
       <div id="result" class="col-12"></div>
-    </section>
+    </div>
   </div>
+
+  <section>
+    <form id="get-prev-game">
+      <input type="submit" value="Previous Game">
+    </form>
+  </section>
 
   </body>
 

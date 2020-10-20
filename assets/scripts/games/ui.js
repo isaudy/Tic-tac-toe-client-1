@@ -4,7 +4,6 @@ const store = require('./../store')
 const onCreateSuccess = function (response) {
   store.game = null
   store.count = 0
-  console.log('store.game after null: ' + store.game)
   $('#message').text('Game created successfully')
   // console.log(response)
   $('#board').show()
@@ -12,8 +11,10 @@ const onCreateSuccess = function (response) {
   $('#board-rows').children().text('')
   $('#game_not_messages').children().text('')
   $('#current_player').text('Current player: X')
+  $('#notification').text('')
+  $('#update').text('')
+  $('#result').text('')
   store.game = response.game
-  console.log(store.game)
 }
 
 const onCreateFail = function () {
@@ -21,7 +22,6 @@ const onCreateFail = function () {
 }
 
 const onGetGamesSuccess = function (response) {
-  console.log(response)
   const gamesFin = function () {
     let count = 0
     for (let i = 0; i < response.games.length; i++) {
@@ -37,15 +37,16 @@ const onGetGamesSuccess = function (response) {
     // <p> Over: ${element.over} </p>
     // <p> Cells: ${element.cells} </p>
     // `)
+    $('#games-display').html('')
     $('#games-display').append(`
       <h5> Stats </h5>
       <p> Games played: ${response.games.length} </p>
       <p> Games finished: ${gamesFin()} </p>
       `)
   }
-  console.log(response.games.length)
   displayGames()
   // response.games.forEach(element => displayGames(element))
+  console.log(response.games)
 }
 
 const onGetGamesFail = function () {
@@ -64,8 +65,8 @@ const onBoxClickFail = function () {
 
 const onUpdateSuccess = function (response) {
   // store.game = response.game
-  console.log('updated game is:' + store.game.cells)
-  console.log('store.game is: ' + store.game)
+  // console.log('updated game is:' + store.game.cells)
+  // console.log('store.game is: ' + store.game)
 }
 
 const onUpdateFail = function () {
@@ -92,6 +93,22 @@ const gameResult = function (player) {
   }
 }
 
+const onGetPrevSuccess = function (response) {
+  console.log(response)
+  $('#board').show()
+  $('#board-rows').children().text('')
+  let arr
+  if (typeof store.game === 'undefined') {
+    arr = response.games[response.games.length - 1].cells
+  } else {
+    arr = response.games[response.games.length - 2].cells
+  }
+  for (let i = 0; i < 10; i++) {
+    const input = arr[i]
+    $('#box' + i).text(input)
+  }
+}
+
 module.exports = {
   onCreateSuccess,
   onCreateFail,
@@ -104,5 +121,6 @@ module.exports = {
   playerTurn,
   onGameEnd,
   onGameTie,
-  gameResult
+  gameResult,
+  onGetPrevSuccess
 }

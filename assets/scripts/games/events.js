@@ -43,8 +43,16 @@ const onUpdateGame = function (test) {
     .then(ui.onUpdateSuccess)
     .catch(ui.onUpdateFail)
 }
+
+const onGetPrev = function () {
+  event.preventDefault()
+
+  api.getGames()
+    .then(ui.onGetPrevSuccess)
+}
 module.exports = {
   onCreateGame,
   onGetGames,
-  onBoxClick
+  onBoxClick,
+  onGetPrev
 }
