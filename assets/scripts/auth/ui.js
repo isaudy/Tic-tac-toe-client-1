@@ -18,6 +18,7 @@ const onSignInSuccess = function (response) {
   $('#sign-in-form').hide()
   $('#create-game').show()
   $('#get-all-games').show()
+  $('#get-prev-game').show()
   $('form').trigger('reset')
 }
 
@@ -46,6 +47,7 @@ const onSignOutSuccess = function () {
   $('#get-all-games').hide()
   $('#board').hide()
   $('#game_notifications').hide()
+  $('#get-prev-game').hide()
 }
 
 const onSignOutFailure = function () {

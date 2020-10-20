@@ -33,9 +33,8 @@ const onBoxClick = function (event) {
   } else {
     if (test.over === true) {
       ui.onGameEnd()
-    } else {
-      onUpdateGame(test)
     }
+    onUpdateGame(test)
   }
 }
 
@@ -44,8 +43,16 @@ const onUpdateGame = function (test) {
     .then(ui.onUpdateSuccess)
     .catch(ui.onUpdateFail)
 }
+
+const onGetPrev = function () {
+  event.preventDefault()
+
+  api.getGames()
+    .then(ui.onGetPrevSuccess)
+}
 module.exports = {
   onCreateGame,
   onGetGames,
-  onBoxClick
+  onBoxClick,
+  onGetPrev
 }

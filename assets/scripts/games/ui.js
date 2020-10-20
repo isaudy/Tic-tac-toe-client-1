@@ -46,6 +46,7 @@ const onGetGamesSuccess = function (response) {
   }
   displayGames()
   // response.games.forEach(element => displayGames(element))
+  console.log(response.games)
 }
 
 const onGetGamesFail = function () {
@@ -92,6 +93,22 @@ const gameResult = function (player) {
   }
 }
 
+const onGetPrevSuccess = function (response) {
+  console.log(response)
+  $('#board').show()
+  $('#board-rows').children().text('')
+  let arr
+  if (typeof store.game === 'undefined') {
+    arr = response.games[response.games.length - 1].cells
+  } else {
+    arr = response.games[response.games.length - 2].cells
+  }
+  for (let i = 0; i < 10; i++) {
+    const input = arr[i]
+    $('#box' + i).text(input)
+  }
+}
+
 module.exports = {
   onCreateSuccess,
   onCreateFail,
@@ -104,5 +121,6 @@ module.exports = {
   playerTurn,
   onGameEnd,
   onGameTie,
-  gameResult
+  gameResult,
+  onGetPrevSuccess
 }
