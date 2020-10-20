@@ -2,6 +2,7 @@ const store = require('./../store')
 
 const onSignUpSuccess = function (response) {
   $('#message').text('You have successfully signed up as: ' + response.user.email)
+  $('form').trigger('reset')
 }
 
 const onSignUpFailure = function () {
@@ -17,6 +18,7 @@ const onSignInSuccess = function (response) {
   $('#sign-in-form').hide()
   $('#create-game').show()
   $('#get-all-games').show()
+  $('form').trigger('reset')
 }
 
 const onSignInFailure = function () {
@@ -25,6 +27,7 @@ const onSignInFailure = function () {
 
 const onChangePassSuccess = function (response) {
   $('#message').text('You have successfully changed your password')
+  $('form').trigger('reset')
 }
 
 const onChangePassFail = function () {
@@ -48,36 +51,6 @@ const onSignOutSuccess = function () {
 const onSignOutFailure = function () {
   $('#message').text('Failed to sign out')
 }
-
-// Create part
-
-// const onCreateSuccess = function (response) {
-//   $('#message').text('Game created successfully')
-// }
-//
-// const onCreateFail = function () {
-//   $('#message').text('Failed to create game')
-// }
-//
-// const onGetGamesSuccess = function (response) {
-//   console.log(response)
-//   const displayGames = function (element) {
-//     $('#games-display').append(`
-//     <h4>Game id: ${element._id} </h4>
-//     <p> Over: ${element.over} </p>
-//     `)
-//   }
-//   response.games.forEach(element => displayGames(element))
-// }
-//
-// const onGetGamesFail = function () {
-//   $('#message').text('Failed to get games')
-// }
-//
-// // Track board in JS
-// const onBoxClickSuccess = function () {
-//   $('#box0').text('X')
-// }
 
 module.exports = {
   onSignUpSuccess,

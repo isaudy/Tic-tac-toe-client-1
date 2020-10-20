@@ -6,7 +6,6 @@ let arr = []
 let winner
 
 const gameBoard = function (index) {
-  console.log('arr in storage is: ' + store.game.cells)
   arr = store.game.cells
   let player
   const playIndex = $('#' + index.id).data('cellIndex')
@@ -14,14 +13,13 @@ const gameBoard = function (index) {
   // If the position is valid and the game is not over
   if (valid === true && store.game.over === false) {
     store.count++
-    console.log(store.count)
     player = getValue()
     arr[playIndex] = player
     nextPlayer(arr[playIndex])
     ui.onBoxClickSuccess(playIndex, arr[playIndex])
     // If the position is invalid and the game is not over
   } else if (valid === false && store.game.over === false) {
-    console.log('This position is invalid')
+    ui.onBoxClickFail()
     return false
   }
   store.game.over = gameStatus()
@@ -30,7 +28,6 @@ const gameBoard = function (index) {
     player: player,
     over: store.game.over
   }
-  console.log('Status is: ' + store.game.over)
   return playObj
 }
 
@@ -57,7 +54,6 @@ const getValue = () => {
 }
 
 const validPos = (playIndex) => {
-  console.log(arr[playIndex])
   let valid = false
   if (arr[playIndex] === 'X' || arr[playIndex] === 'O') {
     valid = false
@@ -103,7 +99,6 @@ const gameIndices = (index1, index2, index3) => {
   if (arr[index1] === arr[index2] && arr[index1] === arr[index3] && arr[index1] !== '') {
     winner = arr[index1]
     ui.gameResult(winner)
-    console.log('The winner is:' + winner)
     return true
   } else {
     return false

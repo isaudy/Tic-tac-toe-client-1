@@ -33,8 +33,9 @@ const onBoxClick = function (event) {
   } else {
     if (test.over === true) {
       ui.onGameEnd()
+    } else {
+      onUpdateGame(test)
     }
-    onUpdateGame(test)
   }
 }
 
